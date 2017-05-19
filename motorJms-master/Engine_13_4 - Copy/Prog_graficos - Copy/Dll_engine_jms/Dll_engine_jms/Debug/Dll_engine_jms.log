@@ -1,0 +1,11 @@
+﻿  Ventana.cpp
+c:\users\juan manuel\desktop\motorjms-master_2\motorjms-master\engine_13_4 - copy\prog_graficos - copy\dll_engine_jms\dll_engine_jms\ventana.h(16): warning C4251: 'Ventana::className': class 'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>' needs to have dll-interface to be used by clients of class 'Ventana'
+  Graphics.cpp
+c:\users\juan manuel\desktop\motorjms-master_2\motorjms-master\engine_13_4 - copy\prog_graficos - copy\dll_engine_jms\dll_engine_jms\ventana.h(16): warning C4251: 'Ventana::className': class 'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>' needs to have dll-interface to be used by clients of class 'Ventana'
+c:\users\juan manuel\desktop\motorjms-master_2\motorjms-master\engine_13_4 - copy\prog_graficos - copy\dll_engine_jms\dll_engine_jms\graphics.cpp(73): warning C4244: 'argument': conversion from 'DWORD' to 'FLOAT', possible loss of data
+  Game.cpp
+c:\users\juan manuel\desktop\motorjms-master_2\motorjms-master\engine_13_4 - copy\prog_graficos - copy\dll_engine_jms\dll_engine_jms\ventana.h(16): warning C4251: 'Ventana::className': class 'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>' needs to have dll-interface to be used by clients of class 'Ventana'
+  Generating Code...
+  LINK : C:\Users\Juan Manuel\Desktop\motorJms-master_2\motorJms-master\Engine_13_4 - Copy\Prog_graficos - Copy\Dll_engine_jms\Debug\Dll_engine_jms.dll not found or not built by the last incremental link; performing full link
+     Creating library C:\Users\Juan Manuel\Desktop\motorJms-master_2\motorJms-master\Engine_13_4 - Copy\Prog_graficos - Copy\Dll_engine_jms\Debug\Dll_engine_jms.lib and object C:\Users\Juan Manuel\Desktop\motorJms-master_2\motorJms-master\Engine_13_4 - Copy\Prog_graficos - Copy\Dll_engine_jms\Debug\Dll_engine_jms.exp
+  Dll_engine_jms.vcxproj -> C:\Users\Juan Manuel\Desktop\motorJms-master_2\motorJms-master\Engine_13_4 - Copy\Prog_graficos - Copy\Dll_engine_jms\Debug\Dll_engine_jms.dll

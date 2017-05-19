@@ -1,0 +1,7 @@
+﻿  PlayState.cpp
+c:\users\juan manuel\desktop\motorjms-master_2\motorjms-master\engine_13_4 - copy\prog_graficos - copy\dll_engine_jms\dll_engine_jms\ventana.h(16): warning C4251: 'Ventana::className': class 'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>' needs to have dll-interface to be used by clients of class 'Ventana'
+  main.cpp
+c:\users\juan manuel\desktop\motorjms-master_2\motorjms-master\engine_13_4 - copy\prog_graficos - copy\dll_engine_jms\dll_engine_jms\ventana.h(16): warning C4251: 'Ventana::className': class 'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>' needs to have dll-interface to be used by clients of class 'Ventana'
+  Generating Code...
+  LINK : C:\Users\Juan Manuel\Desktop\motorJms-master_2\motorJms-master\Engine_13_4 - Copy\Prog_graficos - Copy\Dll_engine_jms\Debug\JuegoJms.exe not found or not built by the last incremental link; performing full link
+  JuegoJms.vcxproj -> C:\Users\Juan Manuel\Desktop\motorJms-master_2\motorJms-master\Engine_13_4 - Copy\Prog_graficos - Copy\Dll_engine_jms\Debug\JuegoJms.exe
