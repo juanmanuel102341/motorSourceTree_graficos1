@@ -6,14 +6,14 @@
 // ---------------------------------------------------------------------
 
 #include <windows.h>
-#include <string>
+//#include <string>
 #include"..//Dll_engine_jms/Dll_engine_jms/EngineApi.h"
 #include "..//Dll_engine_jms/Dll_engine_jms/Ventana.h"
 #include"..//Dll_engine_jms/Dll_engine_jms/Game.h"
 //#pragma comment(lib,"d3d9.lib")
 //#pragma comment(lib,"d3dx9.lib")
 //#pragma comment(lib,"dxguid.lib")
-using namespace std;
+//using namespace std;
 
 
 

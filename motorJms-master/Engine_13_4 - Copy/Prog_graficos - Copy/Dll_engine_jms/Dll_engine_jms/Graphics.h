@@ -37,16 +37,23 @@ private:
 	LPDIRECT3D9 pD3D;//objeto
 	LPDIRECT3DDEVICE9 dispositivo;//device
 	Ventana* nuevaVentana;
-	IDirect3DVertexBuffer9*buffer_vertex;
+	
+	IDirect3DVertexBuffer9*buffer_vertex_triangle;
+	IDirect3DVertexBuffer9*buffer_vertex_square;
+
 	Shape* entity2d;
+	
+
 	bool InitDirect3D(void);
+
 
 	void CleanUp(void);
 	bool SetupEscene();
 	
 	CustomVertex coleccionVertices[3];
 	HRESULT SetupVertexBuffer();
-	void CreacionColeccionVertices();
+	void DrawVertexBuffer();
+
 	
 	
 	D3DXMATRIX MatrizTraslacion(float x, float y);
