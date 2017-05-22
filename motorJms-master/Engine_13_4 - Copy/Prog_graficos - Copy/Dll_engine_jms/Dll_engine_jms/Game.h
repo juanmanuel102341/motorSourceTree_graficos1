@@ -13,6 +13,7 @@ class ENGINE_API Game
 public:
 	Ventana* nuevaVentana;
 	Graphics* nuevoGraphics;
+	
 	bool StartUp(HINSTANCE hInstance);
 	
 	
@@ -21,8 +22,8 @@ public:
 	bool ShutDown();
 	Game();
 	
-protected:
 
+protected:
 	 virtual bool OnInitialize();
 	virtual bool OnLoop();
 	virtual bool OnShutDown();

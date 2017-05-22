@@ -10,6 +10,7 @@
 #include"..//Dll_engine_jms/Dll_engine_jms/EngineApi.h"
 #include "..//Dll_engine_jms/Dll_engine_jms/Ventana.h"
 #include"..//Dll_engine_jms/Dll_engine_jms/Game.h"
+//#include"PlayState.h"
 //#pragma comment(lib,"d3d9.lib")
 //#pragma comment(lib,"d3dx9.lib")
 //#pragma comment(lib,"dxguid.lib")
@@ -30,6 +31,8 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	
 
 	Game * nuevoJuego=new Game;
+	
+	//p->OnInitialize();
 	if (nuevoJuego->StartUp(hInstance))
 	{
 		nuevoJuego->Update();

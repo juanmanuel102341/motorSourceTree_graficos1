@@ -46,8 +46,11 @@ bool Game::ShutDown() {
 }
 
 bool Game::OnInitialize() {
+	OutputDebugString(TEXT("initialize game"));
+		
 	return true;
-}
+
+	}
 bool Game::OnLoop() {
 	return true;
 }

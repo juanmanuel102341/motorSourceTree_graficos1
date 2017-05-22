@@ -2,12 +2,14 @@
 
 #define PLAY_STATE
 #include"../Dll_engine_jms/Dll_engine_jms/Game.h"
-class PlayState:Game
+#include"../Dll_engine_jms/Dll_engine_jms/Shape.h"
+class PlayState:protected Game
 {
-protected:
+	Shape* main_entity2d;
 
   PlayState();
- bool OnInitialize();
+protected:
+  virtual bool OnInitialize();
  bool OnLoop();
 bool OnShutDown();
 //~PlayState();

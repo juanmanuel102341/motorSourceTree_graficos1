@@ -6,16 +6,26 @@
 #include"Ventana.h"
 #include<d3d9.h>
 #include<d3dx9.h>
-#include"Entity2d.h"
-#include"Shape.h"
-#include"Sprite.h"
+//#include"Entity2d.h"
+//#include"Shape.h"
+//#include"Sprite.h"
 #pragma comment(lib,"d3d9.lib")
 #pragma comment(lib,"d3dx9.lib")
 #pragma comment(lib,"dxguid.lib")
 
 #include<string>
+static const int VB_SIZE = 450;
+struct CustomVertex {
+
+	float x, y, z;
+	DWORD color;
 
 
+};
+struct Point {
+	float ptox, ptoy;
+
+};
 
  class ENGINE_API Graphics
 {
@@ -31,9 +41,12 @@ public:
 		void End();
 		void Present();//manda a la pantalla lo q dibujas
 		void Render(void);
-					   //	~Graphics();
+		virtual void TakeVertices(Point point_1, Point point_2, Point point_3);
+		HRESULT CreateVertexBuffer();
+		//	~Graphics();
 
 private:
+
 	LPDIRECT3D9 pD3D;//objeto
 	LPDIRECT3DDEVICE9 dispositivo;//device
 	IDirect3DSurface9*backbufer;
@@ -42,8 +55,6 @@ private:
 	IDirect3DVertexBuffer9*buffer_vertex_triangle;
 	IDirect3DVertexBuffer9*buffer_vertex_square;
 
-	Shape* entity2d;
-	Sprite* sprite;
 
 	bool InitDirect3D(void);
 
@@ -54,9 +65,11 @@ private:
 	CustomVertex coleccionVertices[3];
 	HRESULT SetupVertexBuffer();
 	//void DrawVertexBuffer();
-
+	CustomVertex coleccionVertices_triangles_g[VB_SIZE];
+	CustomVertex coleccionVertices_Squares_g[VB_SIZE];
 	
-	
+	int startIndex_triangle = 0;
+	int startIndex_square = 0;
 	D3DXMATRIX MatrizTraslacion(float x, float y);
 	D3DXMATRIX MatrizRotacion(float angle);
 	D3DXMATRIX MatrizScala(float x, float y);

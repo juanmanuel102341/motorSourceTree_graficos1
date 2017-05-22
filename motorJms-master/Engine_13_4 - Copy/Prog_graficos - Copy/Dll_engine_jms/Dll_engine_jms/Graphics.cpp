@@ -24,7 +24,7 @@ bool Graphics::Shutdown() {
 }
 
 bool Graphics::InitDirect3D(void) {
-
+	OutputDebugString(TEXT("inicio direct x device objeto"));
 	pD3D = NULL;
 	dispositivo = NULL;
 	//objeto dtx;
@@ -53,84 +53,54 @@ bool Graphics::InitDirect3D(void) {
 
 }
 bool Graphics::Initialize(Ventana* _ventana) {
+	//aca empieza //viene de game
 	nuevaVentana = _ventana;
+
 	if (!InitDirect3D()) {
 		return false;
 	}
+	CreateVertexBuffer();
+	//if (!) {
+		//return false;
+	//}
 
 
-
-	entity2d = new Shape;
-	sprite = new Sprite;
-	sprite->GetDevice(dispositivo);
-	sprite->surface_sprite = sprite->CreateSurface(L"trooper.jpg", 299, 310);
-	//sprite->CreacionTexture(L"trooper.jpg", 299, 310);
-	
-	
-	Point p;
-	p.ptox = 0.0f;
-	p.ptoy = 0.0f;
-	Point p2;
-	p2.ptox =-100.0f;
-	p2.ptoy = 0.0f;
-	Point p3;
-	p3.ptox = -50.0f;
-	p3.ptoy =100.0f;
-	entity2d->CreateTriangle(p, p2, p3);
-
-	/*
-	p.ptox = 100.0f;
-	p.ptoy = 0.0f;
-	
-	p2.ptox = 200.0f;
-	p2.ptoy = 0.0f;
-	
-	p3.ptox = 150.0f;
-	p3.ptoy = 100.0f;
-	entity2d->CreateTriangle(p, p2, p3);
-	
-	//p.ptox = 100.0f;
-	//p.ptoy = -100.0f;
-
-	//p2.ptox = 200.0f;
-	//p2.ptoy = -100.0f;
-
-	//p3.ptox = 150.0f;
-	//p3.ptoy = 0.0f;
-	//entity2d->CreateTriangle(p, p2, p3);
-	
-
-	Point pSquare[4];
-	pSquare[0].ptox = 100.0f;
-	pSquare[0].ptoy = -200.0f;
-
-	pSquare[1].ptox = 200.0f;
-	pSquare[1].ptoy = -200.0f;
-
-	pSquare[2].ptox = 100.0f;
-	pSquare[2].ptoy = -100.0f;
-
-	pSquare[3].ptox = 200.0f;
-	pSquare[3].ptoy = -100.0f;
-
-	entity2d->CreateSquare(pSquare);
-
-	*/
-	SetupVertexBuffer();
-	
+		
 	return true;
 	
 		
 }
+void Graphics::TakeVertices(Point point_1, Point point_2, Point point_3) {
+	OutputDebugString(TEXT("triangulo graphics"));
+	coleccionVertices_triangles_g[startIndex_triangle].x = point_1.ptox;
+	coleccionVertices_triangles_g[startIndex_triangle].y = point_1.ptoy;
+	coleccionVertices_triangles_g[startIndex_triangle].z = 0.0f;
 
+	coleccionVertices_triangles_g[startIndex_triangle].color = D3DCOLOR_XRGB(0, 0, 0);
 
-HRESULT Graphics::SetupVertexBuffer() {
+	startIndex_triangle += 1;
+	//numVertices += 1;
+	coleccionVertices_triangles_g[startIndex_triangle].x = point_2.ptox;
+	coleccionVertices_triangles_g[startIndex_triangle].y = point_2.ptoy;
+	coleccionVertices_triangles_g[startIndex_triangle].z = 0.0f;
+	coleccionVertices_triangles_g[startIndex_triangle].color = D3DCOLOR_XRGB(0, 0, 0);
+
+	startIndex_triangle += 1;
+	coleccionVertices_triangles_g[startIndex_triangle].x = point_3.ptox;
+	coleccionVertices_triangles_g[startIndex_triangle].y = point_3.ptoy;
+	coleccionVertices_triangles_g[startIndex_triangle].z = 0.0f;
+	coleccionVertices_triangles_g[startIndex_triangle].color = D3DCOLOR_XRGB(0, 0, 0);
+	startIndex_triangle += 1;
+	SetupVertexBuffer();
+}
+HRESULT Graphics::CreateVertexBuffer() {
+	OutputDebugString(TEXT("vertex buffer"));
 	buffer_vertex_triangle = NULL;
 	HRESULT hr;
 
 
-	hr = dispositivo->CreateVertexBuffer(VB_SIZE * sizeof(CustomVertex), 0, D3DFVF_XYZ| D3DFVF_DIFFUSE, D3DPOOL_DEFAULT, &buffer_vertex_triangle, NULL);
-		
+	hr = dispositivo->CreateVertexBuffer(VB_SIZE * sizeof(CustomVertex), 0, D3DFVF_XYZ | D3DFVF_DIFFUSE, D3DPOOL_DEFAULT, &buffer_vertex_triangle, NULL);
+
 	//chequeo
 	if (FAILED(hr)) {
 		return NULL;
@@ -142,8 +112,12 @@ HRESULT Graphics::SetupVertexBuffer() {
 	if (FAILED(hr)) {
 		return NULL;
 	}
+	return S_OK;
 
-
+}
+HRESULT Graphics::SetupVertexBuffer() {
+	HRESULT hr;
+	OutputDebugString(TEXT("seteo de vertices"));
 	//COPIA VERTEX TRIANGLE
 	VOID* punterosVacios;
 
@@ -152,18 +126,18 @@ HRESULT Graphics::SetupVertexBuffer() {
 	if (FAILED(hr)) {
 		return NULL;
 	}
-	memcpy(punterosVacios, entity2d->coleccionVertices_triangles, sizeof(entity2d->coleccionVertices_triangles));
+	memcpy(punterosVacios,coleccionVertices_triangles_g, sizeof(coleccionVertices_triangles_g));
 	buffer_vertex_triangle->Unlock();
 	//COPIA VERTEX SQUARE
 	VOID* punterosVacios2;
 
-	hr = buffer_vertex_square->Lock(0, 0, (VOID**)&punterosVacios2, 0);
+//	hr = buffer_vertex_square->Lock(0, 0, (VOID**)&punterosVacios2, 0);
 
-	if (FAILED(hr)) {
-		return NULL;
-	}
-	memcpy(punterosVacios2, entity2d->coleccionVertices_Squares, sizeof(entity2d->coleccionVertices_Squares));
-	buffer_vertex_square->Unlock();
+	//if (FAILED(hr)) {
+	//	return NULL;
+	//}
+	//memcpy(punterosVacios2, entity2d->coleccionVertices_Squares, sizeof(entity2d->coleccionVertices_Squares));
+	//buffer_vertex_square->Unlock();
 
 
 	return S_OK;
@@ -243,14 +217,14 @@ void Graphics::Render(void) {
 	Begin();
 	dispositivo->SetStreamSource(0, buffer_vertex_triangle,0,sizeof(CustomVertex));
 	dispositivo->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
-	dispositivo->DrawPrimitive(D3DPT_TRIANGLELIST, 0, entity2d->startIndex_triangle/3);
+	dispositivo->DrawPrimitive(D3DPT_TRIANGLELIST, 0, startIndex_triangle/3);
 
-	dispositivo->SetStreamSource(0, buffer_vertex_square, 0, sizeof(CustomVertex));
-	dispositivo->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
-	dispositivo->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, entity2d->startIndex_square / 2);
+	//dispositivo->SetStreamSource(0, buffer_vertex_square, 0, sizeof(CustomVertex));
+	//dispositivo->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
+	//dispositivo->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, entity2d->startIndex_square / 2);
 	
-	dispositivo->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backbufer);
-	dispositivo->StretchRect(sprite->surface_sprite, NULL, backbufer,NULL, D3DTEXF_NONE);
+	//dispositivo->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backbufer);
+	//dispositivo->StretchRect(sprite->surface_sprite, NULL, backbufer,NULL, D3DTEXF_NONE);
 	
 	End();
 	
