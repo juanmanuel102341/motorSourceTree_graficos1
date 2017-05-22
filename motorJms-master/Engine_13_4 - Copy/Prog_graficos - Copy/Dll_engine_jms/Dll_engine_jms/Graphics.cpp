@@ -1,4 +1,5 @@
 #include"Graphics.h"
+//#include"../"
 void Graphics::Draw() {
 	//dibujo escena
 }
@@ -56,7 +57,15 @@ bool Graphics::Initialize(Ventana* _ventana) {
 	if (!InitDirect3D()) {
 		return false;
 	}
+
+
+
 	entity2d = new Shape;
+	sprite = new Sprite;
+	sprite->GetDevice(dispositivo);
+	sprite->surface_sprite = sprite->CreateSurface(L"trooper.jpg", 299, 310);
+	//sprite->CreacionTexture(L"trooper.jpg", 299, 310);
+	
 	
 	Point p;
 	p.ptox = 0.0f;
@@ -68,8 +77,8 @@ bool Graphics::Initialize(Ventana* _ventana) {
 	p3.ptox = -50.0f;
 	p3.ptoy =100.0f;
 	entity2d->CreateTriangle(p, p2, p3);
-	
-	
+
+	/*
 	p.ptox = 100.0f;
 	p.ptoy = 0.0f;
 	
@@ -105,8 +114,10 @@ bool Graphics::Initialize(Ventana* _ventana) {
 	pSquare[3].ptoy = -100.0f;
 
 	entity2d->CreateSquare(pSquare);
-SetupVertexBuffer();
 
+	*/
+	SetupVertexBuffer();
+	
 	return true;
 	
 		
@@ -237,7 +248,10 @@ void Graphics::Render(void) {
 	dispositivo->SetStreamSource(0, buffer_vertex_square, 0, sizeof(CustomVertex));
 	dispositivo->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
 	dispositivo->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, entity2d->startIndex_square / 2);
-
+	
+	dispositivo->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backbufer);
+	dispositivo->StretchRect(sprite->surface_sprite, NULL, backbufer,NULL, D3DTEXF_NONE);
+	
 	End();
 	
 	Present();

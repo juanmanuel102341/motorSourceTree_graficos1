@@ -8,7 +8,7 @@
 #include<d3dx9.h>
 #include"Entity2d.h"
 #include"Shape.h"
-
+#include"Sprite.h"
 #pragma comment(lib,"d3d9.lib")
 #pragma comment(lib,"d3dx9.lib")
 #pragma comment(lib,"dxguid.lib")
@@ -36,13 +36,14 @@ public:
 private:
 	LPDIRECT3D9 pD3D;//objeto
 	LPDIRECT3DDEVICE9 dispositivo;//device
+	IDirect3DSurface9*backbufer;
 	Ventana* nuevaVentana;
 	
 	IDirect3DVertexBuffer9*buffer_vertex_triangle;
 	IDirect3DVertexBuffer9*buffer_vertex_square;
 
 	Shape* entity2d;
-	
+	Sprite* sprite;
 
 	bool InitDirect3D(void);
 
@@ -52,7 +53,7 @@ private:
 	
 	CustomVertex coleccionVertices[3];
 	HRESULT SetupVertexBuffer();
-	void DrawVertexBuffer();
+	//void DrawVertexBuffer();
 
 	
 	
