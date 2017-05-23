@@ -36,12 +36,12 @@ public:
 		bool Initialize(Ventana* _objVentana);
 		bool Shutdown();
 		void Clear();
-		void Draw();
+		virtual void Draw (CustomVertex g[3]);
 		void Begin();
 		void End();
 		void Present();//manda a la pantalla lo q dibujas
 		void Render(void);
-		virtual void TakeVertices(Point point_1, Point point_2, Point point_3);
+	
 		HRESULT CreateVertexBuffer();
 		//	~Graphics();
 
@@ -63,7 +63,7 @@ private:
 	bool SetupEscene();
 	
 	CustomVertex coleccionVertices[3];
-	HRESULT SetupVertexBuffer();
+	HRESULT SetupVertexBuffer(CustomVertex g[3]);
 	//void DrawVertexBuffer();
 	CustomVertex coleccionVertices_triangles_g[VB_SIZE];
 	CustomVertex coleccionVertices_Squares_g[VB_SIZE];

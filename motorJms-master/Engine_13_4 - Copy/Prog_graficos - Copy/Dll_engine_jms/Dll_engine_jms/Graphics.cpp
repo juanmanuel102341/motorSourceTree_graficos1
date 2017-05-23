@@ -1,7 +1,9 @@
 #include"Graphics.h"
 //#include"../"
-void Graphics::Draw() {
+void Graphics::Draw(CustomVertex g[3]) {
 	//dibujo escena
+//	CustomVertex g[3];
+	SetupVertexBuffer(g);
 }
 void Graphics::Begin() {
 	dispositivo->BeginScene();
@@ -70,32 +72,9 @@ bool Graphics::Initialize(Ventana* _ventana) {
 	
 		
 }
-void Graphics::TakeVertices(Point point_1, Point point_2, Point point_3) {
-	OutputDebugString(TEXT("triangulo graphics"));
-	coleccionVertices_triangles_g[startIndex_triangle].x = point_1.ptox;
-	coleccionVertices_triangles_g[startIndex_triangle].y = point_1.ptoy;
-	coleccionVertices_triangles_g[startIndex_triangle].z = 0.0f;
-
-	coleccionVertices_triangles_g[startIndex_triangle].color = D3DCOLOR_XRGB(0, 0, 0);
-
-	startIndex_triangle += 1;
-	//numVertices += 1;
-	coleccionVertices_triangles_g[startIndex_triangle].x = point_2.ptox;
-	coleccionVertices_triangles_g[startIndex_triangle].y = point_2.ptoy;
-	coleccionVertices_triangles_g[startIndex_triangle].z = 0.0f;
-	coleccionVertices_triangles_g[startIndex_triangle].color = D3DCOLOR_XRGB(0, 0, 0);
-
-	startIndex_triangle += 1;
-	coleccionVertices_triangles_g[startIndex_triangle].x = point_3.ptox;
-	coleccionVertices_triangles_g[startIndex_triangle].y = point_3.ptoy;
-	coleccionVertices_triangles_g[startIndex_triangle].z = 0.0f;
-	coleccionVertices_triangles_g[startIndex_triangle].color = D3DCOLOR_XRGB(0, 0, 0);
-	startIndex_triangle += 1;
-	SetupVertexBuffer();
-}
 HRESULT Graphics::CreateVertexBuffer() {
 	OutputDebugString(TEXT("vertex buffer"));
-	buffer_vertex_triangle = NULL;
+//	buffer_vertex_triangle = NULL;
 	HRESULT hr;
 
 
@@ -105,28 +84,29 @@ HRESULT Graphics::CreateVertexBuffer() {
 	if (FAILED(hr)) {
 		return NULL;
 	}
-	hr = NULL;
-	hr = dispositivo->CreateVertexBuffer(VB_SIZE * sizeof(CustomVertex), 0, D3DFVF_XYZ | D3DFVF_DIFFUSE, D3DPOOL_DEFAULT, &buffer_vertex_square, NULL);
+//	hr = NULL;
+//	hr = dispositivo->CreateVertexBuffer(VB_SIZE * sizeof(CustomVertex), 0, D3DFVF_XYZ | D3DFVF_DIFFUSE, D3DPOOL_DEFAULT, &buffer_vertex_square, NULL);
 
 	//chequeo
-	if (FAILED(hr)) {
-		return NULL;
-	}
+	//if (FAILED(hr)) {
+		//return NULL;
+	//}
 	return S_OK;
 
 }
-HRESULT Graphics::SetupVertexBuffer() {
+HRESULT Graphics::SetupVertexBuffer(CustomVertex g[3]) {
 	HRESULT hr;
+	CreateVertexBuffer();
 	OutputDebugString(TEXT("seteo de vertices"));
 	//COPIA VERTEX TRIANGLE
 	VOID* punterosVacios;
-
+	
 	hr = buffer_vertex_triangle->Lock(0, 0, (VOID**)&punterosVacios, 0);
 
 	if (FAILED(hr)) {
 		return NULL;
 	}
-	memcpy(punterosVacios,coleccionVertices_triangles_g, sizeof(coleccionVertices_triangles_g));
+	memcpy(punterosVacios,g, sizeof(g));
 	buffer_vertex_triangle->Unlock();
 	//COPIA VERTEX SQUARE
 	VOID* punterosVacios2;

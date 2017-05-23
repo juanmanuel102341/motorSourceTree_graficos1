@@ -3,7 +3,7 @@
 
 bool Game::StartUp(HINSTANCE hInstance)
 {
-
+	OutputDebugString(TEXT("inicio game"));
 	nuevaVentana = new Ventana;
 	nuevaVentana->registerClass(hInstance);
 
